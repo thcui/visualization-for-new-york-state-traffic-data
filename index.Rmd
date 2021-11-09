@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Visualization for New York State Traffic Data"
+author: "Tianhang Cui, Siyue Han"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
