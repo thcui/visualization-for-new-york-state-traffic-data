@@ -14,7 +14,7 @@ library(patchwork)
 ```
 
 We will first make a visna  plot for the transformed dataset, which provides a good first overview of the missing values:
-```{r}
+```{r,echo=FALSE}
 
 create_missing_plots<-function(df, percent, max_patterns=Inf){
   
@@ -144,7 +144,7 @@ p_main+p2+p3+plot_layout(design = layout)
 ```
 
 
-```{r fig.width=20,fig.height=20}
+```{r fig.width=20,fig.height=20,echo=FALSE}
 df_final_project<-read_csv("data/2020.csv")
 
 names(df_final_project) <- abbreviate(names(df_final_project), minlength=3,method = "both.sides") 
@@ -158,17 +158,16 @@ Regrading to count-per-hour data, we noticed that most of the missing patterns w
 
 
 To do more investigation focus on count-per-hour data, we first made a bar plot to check the trend of number of missing value with time.
-```{r}
-# change dates to YYYY-MM-DD format
+```{r echo=FALSE}
 df_final_project_longer <-df_final_project%>% pivot_longer(cols=c('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'),names_to="Time_Interval",values_to = "Count")
 df_final_project_longer$Time_Interval<-fct_relevel(df_final_project_longer$Time_Interval,c('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'))
 
-# calculate number missing by day
+# calculate number missing by time intervals
 missing <- df_final_project_longer%>% 
     group_by(Time_Interval) %>% 
     summarise(sum.na = sum(is.na(Count)))
 
-# plot number missing by day
+# plot number missing by time intervals
 ggplot(missing, aes(x = 1:24, y = sum.na)) +
   geom_col(color = "blue", fill = "lightblue") +
   scale_x_continuous(breaks = 1:24, labels = missing$Time_Interval) +
@@ -186,7 +185,7 @@ For the count for different time interval, it seems that there are more missing 
 Then we further made the plots showing the missing value for specific time period and date for each count session.
 
 
-```{r fig.width=20, fig.height=10}
+```{r fig.width=20, fig.height=10,echo=FALSE}
 
 Sys.setlocale("LC_TIME", "English")
 df_final_project<-read_csv("data/2020.csv")
