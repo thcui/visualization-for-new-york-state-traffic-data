@@ -148,7 +148,9 @@ p_main+p2+p3+plot_layout(design = layout)
 df_final_project<-read_csv("data/2020.csv")
 
 names(df_final_project) <- abbreviate(names(df_final_project), minlength=3,method = "both.sides") 
-create_missing_plots(df_final_project,percent=FALSE,max_patterns =15)
+create_missing_plots(df_final_project,percent=FALSE,max_patterns =15) + 
+  ggtitle("Missing Patterns for the Transformed Dataset") +
+  theme(plot.title = element_text(hjust = 0.7, size = 40))
 ```
 
 Here we only show the most frequent 15 patterns as the number of patterns in total is huge and most of the patterns only have a few occurrences. 
