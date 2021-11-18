@@ -8,7 +8,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE,
                       echo = TRUE)
 ```
 
-```{r}
+```{r echo=FALSE}
 library(tidyverse)
 library(patchwork)
 ```
@@ -150,11 +150,16 @@ df_final_project<-read_csv("data/2020.csv")
 names(df_final_project) <- abbreviate(names(df_final_project), minlength=3,method = "both.sides") 
 create_missing_plots(df_final_project,percent=FALSE,max_patterns =15)
 ```
+
+Here we only show the most frequent 15 patterns as the number of patterns in total is huge and most of the patterns only have a few occurrences. 
+
 By investigating the above plot, we found there are a lot of missing data for the average speed of the car per day, so we are considering removing it, as the huge missing of the data would make the result based on it unreliable.
+
+Half of the rows in the data have no missing data except for the average speed, but the rest half have very different kinds of missing patterns.
+
 We also noticed that the rest of the missing data are mostly from the vehicle count data(count-per-hour) for different periods during a day, so we decided to do more investigation focus on them to understand these missing patterns.
 
 Regrading to count-per-hour data, we noticed that most of the missing patterns would have missing data for a continuous-time interval(ex. 7 pm, 8 pm, 9 pm .etc). We suspect that this may be because the data are collected for a continuous hour period (eg. 24/36/48 continuous hours), so the hours without any counting are often continuous.
-
 
 
 To do more investigation focus on count-per-hour data, we first made a bar plot to check the trend of number of missing value with time.
