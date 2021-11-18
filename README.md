@@ -8,3 +8,5 @@ Part of the visualization is combined with the COVID-19 data for New York State:
 
 Link to the book: https://thcui.github.io/Visualization-for-New-York-State-Traffic-Data/
 
+This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate
+
