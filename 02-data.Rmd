@@ -1,2 +1,3 @@
 # Data sources
 
+Traffic data are stored in comma delimited text files (.CSV). CSV files can be opened using applications, such as notepad, Microsoft Excel, and Microsoft Access. This data is intended for analysis by the user.
