@@ -1,5 +1,8 @@
+# Visualization for New York State Traffic Data
 
-The is a data visualization and analysis project about the New York State traffic data from 2018 to 2020, with some analysis about the influence from COVID-19 on the New York State traffic.
+Tianhang Cui (tc3158), Siyue Han (sh4198)
+
+The is an exploratory data analysis and visualization project about the New York State traffic data from 2018 to 2020, with some analysis about the influence from COVID-19 on the New York State traffic. The primary language and tools used in the project are R and D3.js.
 
 The traffic data is from the New York State Department of Transportation: https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb
 
