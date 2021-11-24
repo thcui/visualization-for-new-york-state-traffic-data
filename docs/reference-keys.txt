@@ -5,3 +5,8 @@ missing-values
 results
 interactive-component
 conclusion
+overview-for-new-york-state
+new-york-city
+the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
+closer-look-at-the-new-york-city
+the-busiest-streets-in-new-york-state-from-2018-to-2020
