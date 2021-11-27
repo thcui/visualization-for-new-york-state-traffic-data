@@ -3,12 +3,10 @@ data-sources
 data-transformation
 missing-values
 results
+overview-for-new-york-state
+the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
+the-comparison-between-rural-and-urban-areas-for-their-trend-of-the-average-count
+the-busiest-streets-in-new-york-state-from-2018-to-2020
+closer-look-at-the-new-york-city
 interactive-component
 conclusion
-overview-for-new-york-state
-new-york-city
-the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
-closer-look-at-the-new-york-city
-the-busiest-streets-in-new-york-state-from-2018-to-2020
-the-comparison-brtween-rural-and-urban-areas-for-their-trend-of-the-average-count
-the-comparison-between-rural-and-urban-areas-for-their-trend-of-the-average-count
