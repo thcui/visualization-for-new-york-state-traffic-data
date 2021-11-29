@@ -1,2 +1,81 @@
 # Data sources
 
+
+The primary data sources of this project are [New York State Department of Transportation](https://www.dot.ny.gov/index) and [New York State Department of Health](https://www.health.ny.gov/). 
+
+The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.
+
+The New York State Department of Health(NYSDOH) reported the New York State Statewide COVID-19 testing results and and it is also accessible as comma delimited text files.
+
+
+From the data sources listed above, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.
+
+
+
+## Short Count Volume dataset from the New York State Department of Transportation
+
+Link to the dataset: https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb
+
+
+This dataset contains information about the traffic count for different time slots on different days from 2018 to 2020, so we can get the general pattern, and help us analyze how COVID-19 impact the pattern of traffic volume.
+
+It has very detailed information for each record, such as region, county, direction, etc., so that we can group data by different categories and get insights about the patterns for each kinds of groups.
+
+```{r, echo=FALSE, results='asis'}
+Column <- c('COUNT_ID', 
+            'REGION',
+            'COUNTY_CODE',
+            'STATION',
+            'SPECIFIC_RECORDER_PLACEMENT',
+            'YEAR',
+            'MONTH',
+            'DAY',
+            'DAY_OF_WEEK',
+            'FEDERAL_DIRECTION',
+            'LANE_CODE',
+            'LANES_IN_DIRECTION',
+            'Interval_1_1 through Interval_24_4',
+            'TOTAL'
+            )
+Description <-c(
+                'A unique ID for each count session loaded, each count has one Count_ID for all data types.',
+                'A single digit code for each NYSDOT Region. Can be concatenated with County_Code and Station number to create a unique ID',
+                'A single digit code for each County within a NYSDOT Region. Can be concatenated with Region_Code and Station number to create a unique ID',
+                'A four digit number unique within a county representing a specific segment of road for traffic counting purposes. Can be concatenated with Region_Code and County_Code to create a unique ID.',
+                'Verbal description of the primary counter placement.',
+                'The year in which the data was collected.',
+                'The month in which the data was collected.',
+                'The Day of data collection.',
+                'The day of week the data was collected.',
+                'The federal direction code for the data record. 1 – North, 3 – East, 5 – South, 7 – West, 9 – North/South Combined, 0 – East/West combined',
+                'The lane code by direction, starting with 1 as the rightmost lane.',
+                'The total number of lanes expected in this direction.',
+                'Volume Data for each 15 minute interval. The hourly data will be represented in intervals 1_1, 2_1, etc.',
+                'The sum of all intervals for the record.'
+              
+
+  )
+data_info<- data.frame(Column, Description)
+knitr::kable(data_info, caption = "Major columns used",
+             row.names = F,font_size = 10)
+```
+ 
+**Potential issues found in this dataset:**
+
+1. The data for January 2020 and February 2020 seems to be missing.
+2. There are some rows with the data in the wrong columns, for example, there are 6 rows with `DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday`, which seems not valid but may be an input error, we need to fix them manually.
+
+ 
+##	Average Weekday Speed dataset from the New York State Department of Transportation 
+
+Link to the dataset: https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb
+
+As it provided the average speed data for each day, we can combine it with the short count volume dataset to see the relationship between the traffic count and the average speed for each day on average. This helps us solve the second question above.
+
+##	New York State Statewide COVID-19 Testing dataset
+
+Link to the dataset: https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data
+
+This dataset provides the number of new positive and cumulative cases of Covid-19 in the New York State from 2020 March 1st to the present. Thus, we can use it to make a plot showing the trend of the pandemic for the entire state, and then compare the trend with traffic volume in the New York state. This helps us solve the third question above.
+
+

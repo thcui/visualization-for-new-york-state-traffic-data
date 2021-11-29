@@ -24,7 +24,7 @@
 <meta name="author" content="Tianhang Cui, Siyue Han" />
 
 
-<meta name="date" content="2021-11-27" />
+<meta name="date" content="2021-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -81,7 +81,12 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#short-count-volume-dataset-from-the-new-york-state-department-of-transportation"><i class="fa fa-check"></i><b>2.1</b> Short Count Volume dataset from the New York State Department of Transportation</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#average-weekday-speed-dataset-from-the-new-york-state-department-of-transportation"><i class="fa fa-check"></i><b>2.2</b> Average Weekday Speed dataset from the New York State Department of Transportation</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#new-york-state-statewide-covid-19-testing-dataset"><i class="fa fa-check"></i><b>2.3</b> New York State Statewide COVID-19 Testing dataset</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
@@ -117,7 +122,103 @@
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<p>The primary data sources of this project are <a href="https://www.dot.ny.gov/index">New York State Department of Transportation</a> and <a href="https://www.health.ny.gov/">New York State Department of Health</a>.</p>
+<p>The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.</p>
+<p>The New York State Department of Health(NYSDOH) reported the New York State Statewide COVID-19 testing results and and it is also accessible as comma delimited text files.</p>
+<p>From the data sources listed above, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.</p>
+<div id="short-count-volume-dataset-from-the-new-york-state-department-of-transportation" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Short Count Volume dataset from the New York State Department of Transportation</h2>
+<p>Link to the dataset: <a href="https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb" class="uri">https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb</a></p>
+<p>This dataset contains information about the traffic count for different time slots on different days from 2018 to 2020, so we can get the general pattern, and help us analyze how COVID-19 impact the pattern of traffic volume.</p>
+<p>It has very detailed information for each record, such as region, county, direction, etc., so that we can group data by different categories and get insights about the patterns for each kinds of groups.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 2.1: </span>Major columns used</caption>
+<colgroup>
+<col width="15%" />
+<col width="84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Column</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">COUNT_ID</td>
+<td align="left">A unique ID for each count session loaded, each count has one Count_ID for all data types.</td>
+</tr>
+<tr class="even">
+<td align="left">REGION</td>
+<td align="left">A single digit code for each NYSDOT Region. Can be concatenated with County_Code and Station number to create a unique ID</td>
+</tr>
+<tr class="odd">
+<td align="left">COUNTY_CODE</td>
+<td align="left">A single digit code for each County within a NYSDOT Region. Can be concatenated with Region_Code and Station number to create a unique ID</td>
+</tr>
+<tr class="even">
+<td align="left">STATION</td>
+<td align="left">A four digit number unique within a county representing a specific segment of road for traffic counting purposes. Can be concatenated with Region_Code and County_Code to create a unique ID.</td>
+</tr>
+<tr class="odd">
+<td align="left">SPECIFIC_RECORDER_PLACEMENT</td>
+<td align="left">Verbal description of the primary counter placement.</td>
+</tr>
+<tr class="even">
+<td align="left">YEAR</td>
+<td align="left">The year in which the data was collected.</td>
+</tr>
+<tr class="odd">
+<td align="left">MONTH</td>
+<td align="left">The month in which the data was collected.</td>
+</tr>
+<tr class="even">
+<td align="left">DAY</td>
+<td align="left">The Day of data collection.</td>
+</tr>
+<tr class="odd">
+<td align="left">DAY_OF_WEEK</td>
+<td align="left">The day of week the data was collected.</td>
+</tr>
+<tr class="even">
+<td align="left">FEDERAL_DIRECTION</td>
+<td align="left">The federal direction code for the data record. 1 – North, 3 – East, 5 – South, 7 – West, 9 – North/South Combined, 0 – East/West combined</td>
+</tr>
+<tr class="odd">
+<td align="left">LANE_CODE</td>
+<td align="left">The lane code by direction, starting with 1 as the rightmost lane.</td>
+</tr>
+<tr class="even">
+<td align="left">LANES_IN_DIRECTION</td>
+<td align="left">The total number of lanes expected in this direction.</td>
+</tr>
+<tr class="odd">
+<td align="left">Interval_1_1 through Interval_24_4</td>
+<td align="left">Volume Data for each 15 minute interval. The hourly data will be represented in intervals 1_1, 2_1, etc.</td>
+</tr>
+<tr class="even">
+<td align="left">TOTAL</td>
+<td align="left">The sum of all intervals for the record.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Potential issues found in this dataset:</strong></p>
+<ol style="list-style-type: decimal">
+<li>The data for January 2020 and February 2020 seems to be missing.</li>
+<li>There are some rows with the data in the wrong columns, for example, there are 6 rows with <code>DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday</code>, which seems not valid but may be an input error, we need to fix them manually.</li>
+</ol>
+</div>
+<div id="average-weekday-speed-dataset-from-the-new-york-state-department-of-transportation" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Average Weekday Speed dataset from the New York State Department of Transportation</h2>
+<p>Link to the dataset: <a href="https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb" class="uri">https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb</a></p>
+<p>As it provided the average speed data for each day, we can combine it with the short count volume dataset to see the relationship between the traffic count and the average speed for each day on average. This helps us solve the second question above.</p>
+</div>
+<div id="new-york-state-statewide-covid-19-testing-dataset" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> New York State Statewide COVID-19 Testing dataset</h2>
+<p>Link to the dataset: <a href="https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data" class="uri">https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data</a></p>
+<p>This dataset provides the number of new positive and cumulative cases of Covid-19 in the New York State from 2020 March 1st to the present. Thus, we can use it to make a plot showing the trend of the pandemic for the entire state, and then compare the trend with traffic volume in the New York state. This helps us solve the third question above.</p>
 
+</div>
 </div>
             </section>
 
