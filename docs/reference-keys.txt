@@ -4,6 +4,7 @@ data-sources
 short-count-volume-dataset-from-the-new-york-state-department-of-transportation
 average-weekday-speed-dataset-from-the-new-york-state-department-of-transportation
 new-york-state-statewide-covid-19-testing-dataset
+other-resources
 data-transformation
 missing-values
 results
@@ -11,6 +12,6 @@ overview-for-new-york-state
 the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
 the-comparison-between-rural-and-urban-areas-for-their-trend-of-the-average-count
 the-busiest-streets-in-new-york-state-from-2018-to-2020
-closer-look-at-the-new-york-city
+the-average-count-for-different-time-slots-in-a-week
 interactive-component
 conclusion

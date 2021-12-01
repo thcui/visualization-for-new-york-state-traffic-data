@@ -13,7 +13,7 @@ library(tidyverse)
 library(patchwork)
 ```
 
-We will first make a visna  plot for the transformed dataset, which provides a good first overview of the missing values:
+We will first make a visna plot for the transformed dataset, which provides a good first overview of the missing values:
 ```{r,echo=FALSE}
 
 create_missing_plots<-function(df, percent, max_patterns=Inf){
@@ -195,15 +195,14 @@ Then we further made the plots showing the missing value for specific time perio
 Sys.setlocale("LC_TIME", "English")
 df_final_project<-read_csv("data/2020.csv")
 df_final_project <- df_final_project %>%
-  filter(REGION=='11'& COUNTY_CODE=='1'& `MONTH`=='11')%>%
+  filter(REGION=='New York City'& COUNTY_CODE=='1'& `MONTH`=='11')%>%
   select( `Date`,`COUNT_ID`, `1`:`24`) %>%
   gather(key, value, -`Date`,-`COUNT_ID`) %>%
   mutate(missing = ifelse(is.na(value), "yes", "no"),Date=as.Date(Date))
 
 df_final_project$key<-fct_inorder(df_final_project$key)
 ggplot(df_final_project, aes(x = key, y = `Date`, fill = missing)) + 
-  geom_raster() + scale_fill_manual(values = c("white", "red"))+scale_y_date(date_breaks = "1 day") + theme_bw()+ facet_wrap(vars(
-COUNT_ID),scales = "free",ncol=3)+ggtitle("Missing data for each count session in November, 2020 from New York County in New York city")+xlab('Time Period')+ylab('Date')
+  geom_raster() + scale_fill_manual(values = c("white", "red"))+scale_y_date(date_breaks = "1 day") + theme_bw()+ facet_wrap(vars(COUNT_ID),scales = "free",ncol=3)+ggtitle("Missing data for each count session in November, 2020 from New York County in New York city")+xlab('Time Period')+ylab('Date')
 ```
 
 
