@@ -1,5 +1,9 @@
+tab:unnamed-chunk-3
 introduction
 data-sources
+short-count-volume-dataset-from-the-new-york-state-department-of-transportation
+average-weekday-speed-dataset-from-the-new-york-state-department-of-transportation
+new-york-state-statewide-covid-19-testing-dataset
 data-transformation
 missing-values
 results

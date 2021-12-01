@@ -72,7 +72,7 @@ p <-
   )) + geom_line(data = data_2018_line_chart) + geom_line(data = data_2019_line_chart) +
   geom_line(data = data_2020_line_chart) + scale_x_continuous(breaks = 1:12, labels =
                                                                 1:12) + xlab("Month") + ylab("Average count per hour for each street") +
-  scale_colour_manual(values = c("red", "blue", "darkgreen"))+theme_bw()+ggtitle('the average count per hour per street from 2018 to 2020')
+  scale_colour_manual(values = c("red", "blue", "darkgreen"))+theme_bw()+ggtitle('The Average Count Per Hour Per Street from 2018 to 2020')
 ggplotly(p,tooltip = "text")
 ```
 
