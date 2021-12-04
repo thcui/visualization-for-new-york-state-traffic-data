@@ -80,7 +80,7 @@ ggplotly(p,tooltip = "text")
 
 ### The comparison between rural and urban areas for their trend of the average count
 
-
+- First, we used a parallel coordinate plot, with local min/max scale, to show the relationships between the variables and see which regions have relatively high/low count in each kind of areas.
 **Average count for a street per hour for rural and urban areas in different regions**
 ```{r echo=FALSE}
 
@@ -122,6 +122,8 @@ rural_urban_df%>%arrange(REGION)%>%parcoords(rownames=F,withD3=T,brushMode="1D-a
 
 In general, it seems the number of counts in the rural expressway is positively correlated with the number in other rural roads, and the number of counts in the urban expressway is positively correlated with the number in other urban roads,
 The New York City is seemingly different from other regions as there is 0 volume count for the rural area.
+
+- Next, we used the 'globalminmax' scale to make a general quantitaively comparison between the count for rural and urban areas.
 
 ```{r echo=FALSE}
 ggparcoord(rural_urban_df,column=c(2:5),alphaLines = 0.5,scale = "globalminmax",splineFactor = 10)+geom_vline(xintercept=1:4,color='lightblue')+theme_light()+ggtitle('Average count for a street per hour for rural and urban areas in different regions')
