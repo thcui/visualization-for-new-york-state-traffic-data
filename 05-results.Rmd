@@ -11,6 +11,7 @@ library(GGally)
 library(parcoords)
 library(plotly)
 library(scales) 
+library(forcats)
 ```
 
 
@@ -78,6 +79,82 @@ ggplotly(p,tooltip = "text")
 
 
 ### The comparison between rural and urban areas for their trend of the average count
+
+### The distribution of vehicle count among different regions in New York State from 2018 to 2020
+
+```{r echo=FALSE,fig.width=10,fig.height=20}
+prepare_data_boxplot1 <- function(year){
+  d <- data[[year]] %>% 
+    pivot_longer(cols = c('1','2','3','4','5','6','7','8','9','10','11','12','13',
+                          '14','15','16','17','18','19','20','21','22','23','24'),
+                 names_to = "Time_Interval",
+                 values_to = "Count") %>%
+    group_by(YEAR, REGION, SPECIFIC_RECORDER_PLACEMENT) %>%
+    summarize(Total_Count = sum(Count,na.rm=TRUE),
+              Number_of_tests = sum(!is.na(Count))) %>%
+    mutate(Average_Count = Total_Count / Number_of_tests,
+           REGION = recode(REGION, 
+                  '01' = 'Albany', 
+                  '02' = 'Utica',
+                  '03' = 'Syracuse',
+                  '04' = 'Rochester',
+                  '05' = 'Buffalo',
+                  '06' = 'Hornell',
+                  '07' = 'Watertown',
+                  '08' = 'Poughkeepsie',
+                  '09' = 'Binghamton',
+                  '10' = 'Hauppauge',
+                  '11' = 'New York City')) %>% 
+    ungroup()
+}
+
+boxplot_data1 <- bind_rows(prepare_data_boxplot1('2018'),
+                           prepare_data_boxplot1('2019'),
+                           prepare_data_boxplot1('2020'))
+
+ggplot(boxplot_data1, aes(x = reorder(REGION, -Average_Count, na.rm = TRUE),
+                          y = log10(Average_Count))) + 
+  geom_boxplot() + 
+  xlab('REGION') +
+  ylab('Log_Average_Count') +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + 
+  ggtitle('The distribution of vehicle count among different regions in New York State in 2018, 2019, and 2020') + 
+  facet_wrap(~YEAR, ncol = 1, scales = "free_x")
+```
+
+From the plots above, streets in New York City are always the busiest among regions in New York State from 2018 to 2020.
+
+### The distribution of vehicle count among different weekdays in New York State from 2018 to 2020
+
+```{r echo=FALSE,fig.width=10}
+prepare_data_boxplot2 <- function(year){
+  d <- data[[year]] %>% 
+    pivot_longer(cols = c('1','2','3','4','5','6','7','8','9','10','11','12','13',
+                          '14','15','16','17','18','19','20','21','22','23','24'),
+                 names_to = "Time_Interval",
+                 values_to = "Count") %>%
+    group_by(DAY_OF_WEEK, SPECIFIC_RECORDER_PLACEMENT) %>%
+    summarize(Total_Count = sum(Count, na.rm=TRUE),
+              Number_of_tests = sum(!is.na(Count))) %>%
+    mutate(Average_Count = Total_Count / Number_of_tests) %>%
+    ungroup()
+}
+
+boxplot_data2 <- bind_rows(prepare_data_boxplot2('2018'),
+                           prepare_data_boxplot2('2019'),
+                           prepare_data_boxplot2('2020'))
+
+ggplot(boxplot_data2, aes(x = fct_relevel(DAY_OF_WEEK, 'Thursday', 'Friday', 
+                                          'Saturday', 'Sunday', after = Inf),
+                          y = log10(Average_Count))) + 
+  geom_boxplot() + 
+  xlab('DAY_OF_WEEK') +
+  ylab('Log_Average_Count') +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + 
+  ggtitle('The distribution of vehicle count among different weekdays in New York State from 2018 to 2020')
+```
+
+From the plot above, streets in New York States are busiest on Monday, Tuesday, and Wednesday, and least busy on Friday from 2018 to 2020.
 
 ### The busiest streets in New York State from 2018 to 2020
 
