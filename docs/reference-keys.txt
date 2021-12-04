@@ -15,3 +15,7 @@ the-busiest-streets-in-new-york-state-from-2018-to-2020
 the-average-count-for-different-time-slots-in-a-week
 interactive-component
 conclusion
+the-distribution-of-vehicle-count-in-new-york-state-from-2018-to-2020
+the-distribution-of-vehicle-count-in-new-york-state-from-2018-to-2020-1
+the-distribution-of-vehicle-count-among-different-regions-in-new-york-state-from-2018-to-2020
+the-distribution-of-vehicle-count-among-different-weekdays-in-new-york-state-from-2018-to-2020
