@@ -13,9 +13,8 @@ library(tidyverse)
 library(patchwork)
 ```
 
-We will first make a visna  plot for the transformed dataset, which provides a good first overview of the missing values:
+We will first make a visna plot for the transformed dataset, which provides a good first overview of the missing values:
 ```{r,echo=FALSE}
-
 create_missing_plots<-function(df, percent, max_patterns=Inf){
   
   
@@ -98,8 +97,6 @@ create_missing_plots<-function(df, percent, max_patterns=Inf){
                               y=id_with_no_na,
                               label = "complete cases",hjust = 0.3)
     }
-
-
     p2<-ggplot(missing_patterns_with_ID,aes(x=ID, y=count,alpha=with_NA))+
       geom_col(fill='dodgerblue3')+
       scale_alpha_manual(values=c('TRUE'=1.0,"FALSE"=0.5))+
@@ -116,7 +113,6 @@ create_missing_plots<-function(df, percent, max_patterns=Inf){
       theme_bw()+
       theme(axis.title.x=element_blank(),panel.grid.major.x = element_blank())+
       scale_y_continuous(breaks =pretty(missing_patterns_var_count$var_count, n = 3))
-
     
     if(percent){
       p2<-p2+ylab('% rows')+
@@ -139,14 +135,11 @@ AAAAB
 "
 p_main+p2+p3+plot_layout(design = layout)
 }
-
-
 ```
 
 
 ```{r fig.width=20,fig.height=20,echo=FALSE}
 df_final_project<-read_csv("data/2020.csv")
-
 names(df_final_project) <- abbreviate(names(df_final_project), minlength=3,method = "both.sides") 
 create_missing_plots(df_final_project,percent=FALSE,max_patterns =15)
 ```
@@ -166,12 +159,10 @@ To do more investigation focus on count-per-hour data, we first made a bar plot 
 ```{r echo=FALSE}
 df_final_project_longer <-df_final_project%>% pivot_longer(cols=c('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'),names_to="Time_Interval",values_to = "Count")
 df_final_project_longer$Time_Interval<-fct_relevel(df_final_project_longer$Time_Interval,c('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'))
-
 # calculate number missing by time intervals
 missing <- df_final_project_longer%>% 
     group_by(Time_Interval) %>% 
     summarise(sum.na = sum(is.na(Count)))
-
 # plot number missing by time intervals
 ggplot(missing, aes(x = 1:24, y = sum.na)) +
   geom_col(color = "blue", fill = "lightblue") +
@@ -179,7 +170,6 @@ ggplot(missing, aes(x = 1:24, y = sum.na)) +
   ggtitle("Number of missing values by Time Interval") +
   xlab("Time interval from 1(1am) to 24(12am)") +
   ylab("Number of missing count values (Out of 110535)")
-
 ```
 
 
@@ -191,19 +181,16 @@ Then we further made the plots showing the missing value for specific time perio
 
 
 ```{r fig.width=20, fig.height=10,echo=FALSE}
-
 Sys.setlocale("LC_TIME", "English")
 df_final_project<-read_csv("data/2020.csv")
 df_final_project <- df_final_project %>%
-  filter(REGION=='11'& COUNTY_CODE=='1'& `MONTH`=='11')%>%
+  filter(REGION=='New York City'& COUNTY_CODE=='1'& `MONTH`=='11')%>%
   select( `Date`,`COUNT_ID`, `1`:`24`) %>%
   gather(key, value, -`Date`,-`COUNT_ID`) %>%
   mutate(missing = ifelse(is.na(value), "yes", "no"),Date=as.Date(Date))
-
 df_final_project$key<-fct_inorder(df_final_project$key)
 ggplot(df_final_project, aes(x = key, y = `Date`, fill = missing)) + 
-  geom_raster() + scale_fill_manual(values = c("white", "red"))+scale_y_date(date_breaks = "1 day") + theme_bw()+ facet_wrap(vars(
-COUNT_ID),scales = "free",ncol=3)+ggtitle("Missing data for each count session in November, 2020 from New York County in New York city")+xlab('Time Period')+ylab('Date')
+  geom_raster() + scale_fill_manual(values = c("white", "red"))+scale_y_date(date_breaks = "1 day") + theme_bw()+ facet_wrap(vars(COUNT_ID),scales = "free",ncol=3)+ggtitle("Missing data for each count session in November, 2020 from New York County in New York city")+xlab('Time Period')+ylab('Date')
 ```
 
 

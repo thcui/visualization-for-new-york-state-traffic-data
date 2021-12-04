@@ -79,3 +79,14 @@ Link to the dataset: https://health.data.ny.gov/Health/New-York-State-Statewide-
 This dataset provides the number of new positive and cumulative cases of Covid-19 in the New York State from 2020 March 1st to the present. Thus, we can use it to make a plot showing the trend of the pandemic for the entire state, and then compare the trend with traffic volume in the New York state. This helps us solve the third question above.
 
 
+## Other resources
+1. https://www.dot.ny.gov/regional-offices
+
+The above website provided us the way to interpret the region data, the original region data is the number corresponding to each regions.(ex. 11 for New York City)
+
+2. https://www.dot.ny.gov/gisapps/functional-class-maps
+
+This website provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
+
+
+
