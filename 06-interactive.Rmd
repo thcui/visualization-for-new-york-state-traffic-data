@@ -1,6 +1,6 @@
 # Interactive component
 
-
+[This link](./06-interactive/index.html)
 ```{r, echo=FALSE}
-#htmltools::includeHTML("06-interactive/index.html")
+htmltools::includeHTML("06-interactive/index.html")
 ```
