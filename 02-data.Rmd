@@ -88,5 +88,8 @@ The above website provided us the way to interpret the region data, the original
 
 This website provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
 
+3. https://cugir.library.cornell.edu/catalog/cugir-007865
+
+The above website provided us the shapefile for New York Sate and it is used in the interactive component
 
 

@@ -1,4 +1,4 @@
-tab:unnamed-chunk-6
+tab:unnamed-chunk-3
 introduction
 data-sources
 short-count-volume-dataset-from-the-new-york-state-department-of-transportation
@@ -6,6 +6,10 @@ average-weekday-speed-dataset-from-the-new-york-state-department-of-transportati
 new-york-state-statewide-covid-19-testing-dataset
 other-resources
 data-transformation
+for-short-count-volume-dataset
+drop-unnecessary-columns
+use-region-name-to-replace-region-code
+use-county-name-to-replace-the-combination-of-region-code-and-county-code
 missing-values
 results
 the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
