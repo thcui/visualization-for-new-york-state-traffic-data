@@ -1,0 +1,262 @@
+---
+title: "data_transformation"
+author: "Tianhang Cui"
+date: "2021/10/31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+```{r}
+transform_data <- function(year) {
+  volume_names <-
+    dir('Data') %>% str_subset(paste("SC\\_VOLUME\\_DATA_R.*\\_", year, sep =""))
+  speed_names <-
+    dir('Data') %>% str_subset(paste("SC\\_SPEED\\_AVGWD_R.*\\_", year, sep =""))
+  
+  all = tibble()
+  for (i in 1:length(volume_names)) {
+    volume_path = paste("Data/", volume_names[[i]], sep = "")
+    speed_path = paste("Data/", speed_names[[i]], sep = "")
+    print(paste("Reading ", volume_path, sep = ""))
+    volume_data <-
+      read_csv(
+        volume_path,
+        col_types = cols(REGION = col_character()),
+        show_col_types = FALSE
+      ) %>% select(
+        !c(
+          DATA_TYPE,
+          RC_STATION,
+          LATITUDE,
+          LONGITUDE,
+          FLAG_FIELD,
+          RCSTA,
+          FACTOR_GROUP,
+          VEHICLE_AXLE_CODE,
+          BATCH_ID,
+          CHANNEL_NOTES
+        )
+      ) %>% mutate(RC = paste(REGION_CODE, COUNTY_CODE, sep = "")) %>% mutate(
+        REGION = recode(
+          REGION,
+          '01' = 'Albany',
+          '02' = 'Utica',
+          '03' = 'Syracuse',
+          '04' = 'Rochester',
+          '05' = 'Buffalo',
+          '06' = 'Hornell',
+          '07' = 'Watertown',
+          '08' = 'Poughkeepsie',
+          '09' = 'Binghamton',
+          '10' = 'Hauppauge',
+          '11' = 'New York City'
+        ),
+        COUNTY = recode(
+          RC,
+          
+          '11' = 'Albany',
+          '12' = 'Essex',
+          '13' = 'Greene',
+          '14' = 'Rensselaer',
+          '15' = 'Saratoga',
+          '16' = 'Schenectady',
+          '17' = 'Warren',
+          '18' = 'Washington',
+          '21' = 'Fulton',
+          '22' = 'Hamilton',
+          '23' = 'Herkimer',
+          '24' = 'Madison',
+          '25' = 'Montgomery',
+          '26' = 'Oneida',
+          '31' = 'Cayuga',
+          '32' = 'Cortland',
+          '33' = 'Onondaga',
+          '34' = 'Oswego',
+          '35' = 'Seneca',
+          '36' = 'Tompkins',
+          '41' = 'Genesee',
+          '42' = 'Livingston',
+          '43' = 'Monroe',
+          '44' = 'Ontario',
+          '45' = 'Orleans',
+          '46' = 'Wyoming',
+          '47' = 'Wayne',
+          '51' = 'Cattaraugus',
+          '52' = 'Chautauqua',
+          '53' = 'Erie',
+          '54' = 'Niagara',
+          '61' = 'Allegany',
+          '62' = 'Chemung',
+          '63' = 'Schuyler',
+          '64' = 'Steuben',
+          '66' = 'Yates',
+          '71' = 'Clinton',
+          '72' = 'Franklin',
+          '73' = 'Jefferson',
+          '74' = 'Lewis',
+          '75' = 'St. Lawrence',
+          '81' = 'Columbia',
+          '82' = 'Dutchess',
+          '83' = 'Orange',
+          '84' = 'Putnam',
+          '85' = 'Rockland',
+          '86' = 'Ulster',
+          '87' = 'Westchester',
+          '91' = 'Broome',
+          '92' = 'Chenango',
+          '93' = 'Delaware',
+          '94' = 'Otsego',
+          '95' = 'Schoharie',
+          '96' = 'Sullivan',
+          '97' = 'Tioga',
+          '03' = 'Nassau',
+          '07' = 'Suffolk',
+          '01' = 'Bronx',
+          '02' = 'Kings',
+          '04' = 'New York',
+          '05' = 'Queens',
+          '06' = 'Richmond'
+          
+        )
+      ) %>% select(!c(REGION_CODE, COUNTY_CODE, RC))
+    print(paste("Reading ", speed_path, sep = ""))
+    
+    
+    speed_data <-
+      read_csv(speed_path, show_col_types = FALSE) %>% select(COUNT_ID,
+                                                              AVG_SPEED,
+                                                              YEAR,
+                                                              MONTH,
+                                                              DAY_OF_FIRST_DATA,
+                                                              FEDERAL_DIRECTION) %>% rename(DAY = DAY_OF_FIRST_DATA)
+    combined <-
+      left_join(
+        volume_data,
+        speed_data,
+        by = c("COUNT_ID", "YEAR", "MONTH", "DAY", "FEDERAL_DIRECTION")
+      ) %>% mutate(Date = paste(YEAR, MONTH, DAY, sep = "-"))
+    for (hour in c(1:24)) {
+      interval_1 = paste("INTERVAL_", hour, "_1", sep = "")
+      interval_2 = paste("INTERVAL_", hour, "_2", sep = "")
+      interval_3 = paste("INTERVAL_", hour, "_3", sep = "")
+      interval_4 = paste("INTERVAL_", hour, "_4", sep = "")
+      combined <-
+        combined %>% mutate("{hour}" := rowSums((combined[, c(interval_1, interval_2, interval_3, interval_4)])))
+      
+      combined <-
+        combined %>% select(!c(interval_1, interval_2, interval_3, interval_4))
+      
+    }
+    all <- bind_rows(combined, all)
+  }
+  return (all)
+}
+```
+
+
+
+```{r}
+data_2018<-transform_data(2018)
+write_csv(data_2018, "2018.csv")
+data_2019<-transform_data(2019)
+write_csv(data_2019, "2019.csv")
+data_2020<-transform_data(2020)
+write_csv(data_2020, "2020.csv")
+```
+
+
+```{r}
+data_2018<-read_csv('2018.csv')
+data_2019 <- read_csv('2019.csv')
+data_2020 <- read_csv('2020.csv')
+
+data_all <- bind_rows(list(data_2018, data_2019, data_2020))
+
+data_county <-
+  data_all %>% pivot_longer(
+    cols = c(
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24"
+    ),
+    names_to = 'Time Interval',
+    values_to = 'count_per_hour',
+  ) %>% group_by(YEAR, MONTH, COUNTY) %>% summarize(
+    Total_count = sum(count_per_hour, na.rm = TRUE),
+    Number_of_test_hours = sum(!is.na(count_per_hour))
+  ) %>% mutate(count = Total_count / Number_of_test_hours) %>% ungroup() %>%
+  mutate(date = paste(YEAR, MONTH, sep = "-")) %>% select (-c(Total_count, Number_of_test_hours, YEAR, MONTH)) %>%
+  pivot_wider(
+    id_cols = !c(COUNTY, count),
+    names_from = COUNTY,
+    values_from = count
+  )
+
+
+data_count <-
+  data_all %>% pivot_longer(
+    cols = c(
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24"
+    ),
+    names_to = 'Time Interval',
+    values_to = 'count_per_hour',
+  ) %>% group_by(YEAR, MONTH) %>% summarize(
+    Total_count = sum(count_per_hour, na.rm = TRUE),
+    Number_of_test_hours = sum(!is.na(count_per_hour))
+  ) %>% mutate(count = Total_count / Number_of_test_hours) %>% ungroup() %>%
+  mutate(date = paste(YEAR, MONTH, sep = "-")) %>% select (-c(Total_count, Number_of_test_hours, YEAR, MONTH)) %>%relocate(date, count)
+
+data_all <-left_join(data_county, data_count, by = 'date') %>% relocate(date, count)
+
+write_csv(data_all, "data_for_interactivity.csv")
+```
+

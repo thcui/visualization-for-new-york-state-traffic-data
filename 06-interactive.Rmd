@@ -1,6 +1,5 @@
 # Interactive component
 
 
-```{r, echo=FALSE}
-#htmltools::includeHTML("06-interactive/index.html")
-```
+
+[Click here!](http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/06-interactive/)

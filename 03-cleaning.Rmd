@@ -1,1 +1,15 @@
 # Data transformation
+
+
+## For Short Count Volume dataset
+### Drop unnecessary columns
+
+
+We dropped the following columns as they are not necessary for our tasks
+```
+DATA_TYPE, RC_STATION, LATITUDE, LONGITUDE, FLAG_FIELD, RCSTA, FACTOR_GROUP, VEHICLE_AXLE_CODE, BATCH_ID, CHANNEL_NOTES
+
+```
+          
+### Use region name to replace region code
+### Use county name to replace the combination of region code and county code
