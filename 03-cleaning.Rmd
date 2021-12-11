@@ -1,15 +1,19 @@
 # Data transformation
 
+The script for data transformation can be found here:
+https://github.com/thcui/Visualization-for-New-York-State-Traffic-Data/blob/main/data/data_transformation.Rmd
 
 ## For Short Count Volume dataset
-### Drop unnecessary columns
 
+### Drop unnecessary columns
 
 We dropped the following columns as they are not necessary for our tasks
 ```
 DATA_TYPE, RC_STATION, LATITUDE, LONGITUDE, FLAG_FIELD, RCSTA, FACTOR_GROUP, VEHICLE_AXLE_CODE, BATCH_ID, CHANNEL_NOTES
 
 ```
-          
 ### Use region name to replace region code
+We need to show the name for each region to let the user to know which region it is instead of using a code, this is needed when we made many plots, so we transformed the dataset.
+
 ### Use county name to replace the combination of region code and county code
+We need to use the county name as the key to pair with the data in the shapefile, but there is no county name provided. So we have to combine the region code and county code to get the county and translate it to the county name following the official document "NYSDOT Region and County Codes".
