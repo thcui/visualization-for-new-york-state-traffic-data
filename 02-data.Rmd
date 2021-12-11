@@ -86,9 +86,13 @@ The above website provided us the way to interpret the region data, the original
 
 2. https://www.dot.ny.gov/gisapps/functional-class-maps
 
-This website provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
+This website provided us the way to interpret the region county codes, the original region data are 2 separated number corresponding to region and county.
 
-3. https://cugir.library.cornell.edu/catalog/cugir-007865
+3. https://www.dot.ny.gov/divisions/engineering/technical-services/hds-respository/Traffic%20Data%20Report%202011%20Appendix%20D%20-%20NYSDOT%20Regions%20and%20County%20Codes.pdf
+
+This document provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
+
+4. https://cugir.library.cornell.edu/catalog/cugir-007865
 
 The above website provided us the shapefile for New York Sate and it is used in the interactive component
 
