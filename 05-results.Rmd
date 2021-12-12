@@ -227,7 +227,11 @@ ggplot(bar_chart_data, aes(
 
 
 ```
-From the plots above, we can see there are more busy streets from New York City(NYC) from 2018 to 2020, and it turns out that the 15 busiest streets are all from NYC on 2020. This suggest us that there may be something different between NYC and other counties, and we should take a closer look to NYC.
+From the plots above, we can see there are more busy streets from New York City(NYC) and Hauppauge in 2018 and 2019, and there are some busy streets from other regions in 2018 and 2019. However, it turns out that the 15 busiest streets are all from NYC in 2020.
+
+We can see there is a trend that NYC become dominate the first 15 busiest streets from 2018 to 2020.
+
+This suggests that there may be something different between NYC and other counties, and we should take a closer look at NYC.
 
 ## The average count for different time slots in a week
 ```{r echo=FALSE}
