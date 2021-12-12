@@ -40,7 +40,7 @@ data_2018_line_chart<-data[['2018']]%>%pivot_longer(cols=c("1","2","3","4","5","
   group_by(Year, MONTH) %>% summarize(
   Total_count = sum(count_per_hour, na.rm = TRUE),
   Number_of_test_hours = sum(!is.na(count_per_hour))
-) %>% mutate(Average_count_per_hour = Total_count / Number_of_test_hours)
+) %>% mutate(Average_count_per_hour = round(Total_count / Number_of_test_hours,2))
 
 data_2019_line_chart<-data[['2019']]%>%pivot_longer(cols=c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"),
                                                     names_to='Time Interval',
@@ -49,7 +49,7 @@ data_2019_line_chart<-data[['2019']]%>%pivot_longer(cols=c("1","2","3","4","5","
   group_by(Year, MONTH) %>% summarize(
   Total_count = sum(count_per_hour, na.rm = TRUE),
   Number_of_test_hours = sum(!is.na(count_per_hour))
-) %>% mutate(Average_count_per_hour = Total_count / Number_of_test_hours)
+) %>% mutate(Average_count_per_hour = round(Total_count / Number_of_test_hours,2))
 
 data_2020_line_chart<-data[['2020']]%>%pivot_longer(cols=c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"),
                                                     names_to='Time Interval',
@@ -58,7 +58,7 @@ data_2020_line_chart<-data[['2020']]%>%pivot_longer(cols=c("1","2","3","4","5","
   group_by(Year, MONTH) %>% summarize(
   Total_count = sum(count_per_hour, na.rm = TRUE),
   Number_of_test_hours = sum(!is.na(count_per_hour))
-) %>% mutate(Average_count_per_hour = Total_count / Number_of_test_hours)
+) %>% mutate(Average_count_per_hour = round(Total_count / Number_of_test_hours,2))
 
 p <-
   ggplot(mapping = aes(
@@ -73,7 +73,7 @@ p <-
   )) + geom_line(data = data_2018_line_chart) + geom_line(data = data_2019_line_chart) +
   geom_line(data = data_2020_line_chart) + scale_x_continuous(breaks = 1:12, labels =
                                                                 1:12) + xlab("Month") + ylab("Average count per hour for each street") +
-  scale_colour_manual(values = c("red", "blue", "darkgreen"))+theme_bw()+ggtitle('The Average Count Per Hour Per Street from 2018 to 2020')
+  scale_colour_manual(values = c("red", "blue", "darkgreen"))+theme_bw()+ggtitle('The Average Count Per Hour Per Street from 2018 to 2020')+scale_y_continuous(limits = c(0, 250), expand = c(0, 0))
 ggplotly(p,tooltip = "text")
 ```
 
