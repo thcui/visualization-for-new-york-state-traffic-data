@@ -27,3 +27,4 @@ description
 the-purpose-of-this-visualization
 how-interactivity-helps-us
 conclusion
+the-trend-of-the-average-count-vs-the-covid-19-cases
