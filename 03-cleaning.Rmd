@@ -21,3 +21,6 @@ We need to show the name for each region to let the user to know which region it
 
 ### Use county name to replace the combination of region code and county code
 We need to use the county name as the key to pair with the data in the shapefile, but there is no county name provided. So we have to combine the region code and county code to get the county and translate it to the county name following the official document "NYSDOT Region and County Codes".
+
+### Fixing the obvious errors in the dataset
+As we mentioned in the second chapter, there are a few records with data in the wrong columns, we made fixed them by hand as the number of these errors is small (12 in total).
