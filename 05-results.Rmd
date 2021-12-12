@@ -80,6 +80,7 @@ ggplotly(p,tooltip = "text")
 
 ## The comparison between rural and urban areas for their trend of the average count
 - First, we used a parallel coordinate plot, with local min/max scale, to show the relationships between the variables and see which regions have relatively high/low count in each kind of areas.
+
 **Average count for a street per hour for rural and urban areas in different regions**
 ```{r echo=FALSE}
 
@@ -313,6 +314,15 @@ heat_maps<-grid.arrange(
 )
 ```
 
+From the heat map above, we can see the counts are concentrated from 16:00 to 18:00 on workdays, and Monday tends to have a longer time of busy hours than any other day in a week. This may be because many people would like to go home after work or go to someplace to relax in the period of 16:00 to 18:00.
+The counts are also concentrated from 8 am to 9 am for the workdays, this is highly likely because people need to go to work. However, this trend is less obvious than the concentrated count from 16:00 to 18:00 on the workdays.
+We also noticed that the number of hours with relatively high counts tends to decrease from 2018 to 2020, and it decreased a lot in 2020 compared with 2019. This may be due to the pandemic, and more people need to work at home so they would not need to use the street.
+
+The street tends to be much less busy on Saturday and Sunday, this may be because going to work is the main reason people need streets, but it is also likely that people still use the street a lot on weekends but the needs are less concentrated on specific hours.
+
+Based on the plots, it seems reasonable to make a suggestion to the department of transport such that putting more police to help with traffic on 8 am-9 am and 15 am-19 am on weekdays.
+
+As we have seen the New York City seems to be different from other regions from the bar plots above, we made the same treemap for only New York City to see if we can get more information about this difference.
 
 ```{r echo=FALSE,fig.width=20,fig.height=10}
 #NYC,2018-2020,HEATMAP
@@ -354,3 +364,5 @@ heat_maps<-grid.arrange(
 ```
 
 
+The treemap for the region of New York City behaves different pattern from the treemap before. We can see the number of busy hours is high in both 2018 and 2020 but low in 2019, and it is extremely busy for Monday and Tuesday from 15 pm to 18 pm. We did not see the pattern that the pandemic made people use the street less than before, and the street tends to be busier in 2020 than in 2019.
+However, there are also some patterns that New York city shares with the entire New York State, the streets in New York City also tend to be busier on Monday and Tuesday than on other days, and the busy hours are longer in the afternoon than in the morning.
