@@ -1,15 +1,24 @@
 # Data sources
 
 
-The primary data sources of this project are [New York State Department of Transportation](https://www.dot.ny.gov/index) and [New York State Department of Health](https://www.health.ny.gov/). 
+The primary data sources of this project are [New York State Department of Transportation](https://www.dot.ny.gov/index) and [New York State Department of Health](https://www.health.ny.gov/). They are the organizations who are responbsible for collecting thest data.
 
-The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.
+The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.The data is collected by using the portable traffic counters. All portable traffic counters have been tested annually, to ensure that their count deviation does not exceed 2%. To be more specific, each count is collected by *one* of the following equipment:
+```
+1. Diamond Traffic Products(models Unicorn & Phoenix)
+2. MetroCount MC5805
+3. MetroCount 5600
+
+```
+
+TRAFMAN (Diamond Traffic Products), Road Reporter (International Road Dynamics), and Traffic Executive (MetroCount) software are used by the Main Office and Regional Offices of NYSDOT to read traffic count data from electronic counters and prepare the requisite output format files. These counters and programs relevant to the generation of NYSDOT format files may be assisted by the Main Office.
 
 The New York State Department of Health(NYSDOH) reported the New York State Statewide COVID-19 testing results and and it is also accessible as comma delimited text files.
 
 
-From the data sources listed above, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.
+There are also some other data sources similar to what we used, but they are not published by official orginazation and they are adopted from the data sources above. Thus, to make our result accurate, we used the original and official data. 
 
+***In summary, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.***
 
 
 ## Short Count Volume dataset from the New York State Department of Transportation
@@ -60,10 +69,14 @@ knitr::kable(data_info, caption = "Major columns used",
              row.names = F,font_size = 10)
 ```
  
+**Number of Records:**
+
+There are 99454 records for year 2018, 122967 records for year 2019, and 110536 records for year 2020. In total there are 332,957 records of data.
+
 **Potential issues found in this dataset:**
 
 1. The data for January 2020 and February 2020 seems to be missing.
-2. There are some rows with the data in the wrong columns, for example, there are 6 rows with `DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday`, which seems not valid but may be an input error, we need to fix them manually.
+2. There are some records with the data in the wrong columns, for example, there are 6 rows with `DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday`, which seems not valid but may be an input error, we need to fix them manually.
 
  
 ##	Average Weekday Speed dataset from the New York State Department of Transportation 

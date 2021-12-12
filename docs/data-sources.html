@@ -99,6 +99,7 @@
 <li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#aggregate-the-time-columns"><i class="fa fa-check"></i><b>3.1.2</b> Aggregate the Time Columns</a></li>
 <li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#use-region-name-to-replace-region-code"><i class="fa fa-check"></i><b>3.1.3</b> Use region name to replace region code</a></li>
 <li class="chapter" data-level="3.1.4" data-path="data-transformation.html"><a href="data-transformation.html#use-county-name-to-replace-the-combination-of-region-code-and-county-code"><i class="fa fa-check"></i><b>3.1.4</b> Use county name to replace the combination of region code and county code</a></li>
+<li class="chapter" data-level="3.1.5" data-path="data-transformation.html"><a href="data-transformation.html#fixing-the-obvious-errors-in-the-dataset"><i class="fa fa-check"></i><b>3.1.5</b> Fixing the obvious errors in the dataset</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
@@ -141,10 +142,16 @@
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
-<p>The primary data sources of this project are <a href="https://www.dot.ny.gov/index">New York State Department of Transportation</a> and <a href="https://www.health.ny.gov/">New York State Department of Health</a>.</p>
-<p>The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.</p>
+<p>The primary data sources of this project are <a href="https://www.dot.ny.gov/index">New York State Department of Transportation</a> and <a href="https://www.health.ny.gov/">New York State Department of Health</a>. They are the organizations who are responbsible for collecting thest data.</p>
+<p>The New York State Department of Transportation(NYSDOT) monitored and gathered the traffic data including vehicle classification, volume and speed, and they are accessible as comma delimited text files.The data is collected by using the portable traffic counters. All portable traffic counters have been tested annually, to ensure that their count deviation does not exceed 2%. To be more specific, each count is collected by <em>one</em> of the following equipment:</p>
+<pre><code>1. Diamond Traffic Products(models Unicorn &amp; Phoenix)
+2. MetroCount MC5805
+3. MetroCount 5600
+</code></pre>
+<p>TRAFMAN (Diamond Traffic Products), Road Reporter (International Road Dynamics), and Traffic Executive (MetroCount) software are used by the Main Office and Regional Offices of NYSDOT to read traffic count data from electronic counters and prepare the requisite output format files. These counters and programs relevant to the generation of NYSDOT format files may be assisted by the Main Office.</p>
 <p>The New York State Department of Health(NYSDOH) reported the New York State Statewide COVID-19 testing results and and it is also accessible as comma delimited text files.</p>
-<p>From the data sources listed above, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.</p>
+<p>There are also some other data sources similar to what we used, but they are not published by official orginazation and they are adopted from the data sources above. Thus, to make our result accurate, we used the original and official data.</p>
+<p><strong><em>In summary, we utilized two datasets from NYSDOT: Short Count Volume dataset and Average Weekday Speed dataset, and one dataset from NYSDOH: New York State Statewide COVID-19 Testing dataset.</em></strong></p>
 <div id="short-count-volume-dataset-from-the-new-york-state-department-of-transportation" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Short Count Volume dataset from the New York State Department of Transportation</h2>
 <p>Link to the dataset: <a href="https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb" class="uri">https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb</a></p>
@@ -221,10 +228,12 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Number of Records:</strong></p>
+<p>There are 99454 records for year 2018, 122967 records for year 2019, and 110536 records for year 2020. In total there are 332,957 records of data.</p>
 <p><strong>Potential issues found in this dataset:</strong></p>
 <ol style="list-style-type: decimal">
 <li>The data for January 2020 and February 2020 seems to be missing.</li>
-<li>There are some rows with the data in the wrong columns, for example, there are 6 rows with <code>DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday</code>, which seems not valid but may be an input error, we need to fix them manually.</li>
+<li>There are some records with the data in the wrong columns, for example, there are 6 rows with <code>DATATYPE=2020, YEAR=6, MONTH=1, DAY=Tuesday</code>, which seems not valid but may be an input error, we need to fix them manually.</li>
 </ol>
 </div>
 <div id="average-weekday-speed-dataset-from-the-new-york-state-department-of-transportation" class="section level2" number="2.2">

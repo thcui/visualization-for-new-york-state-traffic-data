@@ -11,6 +11,7 @@ drop-unnecessary-columns
 aggregate-the-time-columns
 use-region-name-to-replace-region-code
 use-county-name-to-replace-the-combination-of-region-code-and-county-code
+fixing-the-obvious-errors-in-the-dataset
 missing-values
 results
 the-overall-trend-of-the-average-count-per-hour-per-street-from-2018-to-2020
