@@ -23,4 +23,6 @@ interactive-component
 link-to-the-interactive-component
 instructions
 description
+the-purpose-of-this-visualization
+how-interactivity-helps-us
 conclusion

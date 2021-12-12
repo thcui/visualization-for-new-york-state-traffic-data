@@ -116,6 +116,8 @@
 <li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#link-to-the-interactive-component"><i class="fa fa-check"></i><b>6.1</b> Link to the interactive component</a></li>
 <li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#instructions"><i class="fa fa-check"></i><b>6.2</b> Instructions</a></li>
 <li class="chapter" data-level="6.3" data-path="interactive-component.html"><a href="interactive-component.html#description"><i class="fa fa-check"></i><b>6.3</b> Description</a></li>
+<li class="chapter" data-level="6.4" data-path="interactive-component.html"><a href="interactive-component.html#the-purpose-of-this-visualization"><i class="fa fa-check"></i><b>6.4</b> The Purpose of this Visualization</a></li>
+<li class="chapter" data-level="6.5" data-path="interactive-component.html"><a href="interactive-component.html#how-interactivity-helps-us"><i class="fa fa-check"></i><b>6.5</b> How Interactivity Helps Us</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -153,9 +155,20 @@ Both the line chart and the color of the map will then change according to the t
 </div>
 <div id="description" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Description</h2>
-<p>The interactive plots are built with D3 version 7, anyone can check the code by using: developer tools-&gt;resources, or via the github page.</p>
+<p>The interactive plots are built with D3 version 7, anyone can check the code by using: developer tools-&gt;resources, or via the github page <a href="https://github.com/thcui/Visualization-for-New-York-State-Traffic-Data/tree/main/06-interactive">here</a>.</p>
 <p>The line chart shows the average count for per street per hour for the entire New York State, using can change the time period by shrink/expand/move the brush under the line chart.</p>
 <p>The choropleth map shows the average number of counts per street per hour for each county in the New York State. It calculates the average based on the time interval user selected on the line chart.</p>
+</div>
+<div id="the-purpose-of-this-visualization" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> The Purpose of this Visualization</h2>
+<p>The main purpose is to allow users can easily know the trend of the vehicle count in New York State in recent years or any recent periods. Another purpose is to help users to know how the vehicle count changed for each county and check if there is any geographical pattern in New York State, especially during the time of pandemic and we suspect the New York City behaved differently from other counties in terms of the traffic count.</p>
+</div>
+<div id="how-interactivity-helps-us" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> How Interactivity Helps Us</h2>
+<p>The control over which period to display on the line chart allows users to look carefully at a specific period, and it also allows users to have the ability to have an overview of the data. This also gives users the freedom to see the average count on the map for a specific county in any possible period. The user may want to focus on one specific month, one specific year, or all three years, etc., interactivity makes this possible.</p>
+<p>The tooltip on the line chart and map allows the user to know the exact value, without making the plots messy, the user can get the information by his/her need.</p>
+<p>The animation of the line chart when the chart is initialized helps the user to know how the time is related to the horizontal axis and where is the brush currently focused on, the animation line chart when moving the brush allows the user to easily know what changes he/she is currently making related to the line chart.</p>
+<p>The animation of color change on the map (after each time the user changed the brush) allows the user to easily detect which part of the graph has changed.</p>
 <div class="figure">
 <img src="data/screenshot.png" alt="" />
 <p class="caption">Screenshot of the Interactive component</p>
