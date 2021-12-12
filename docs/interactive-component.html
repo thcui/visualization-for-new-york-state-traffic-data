@@ -24,7 +24,7 @@
 <meta name="author" content="Tianhang Cui, Siyue Han" />
 
 
-<meta name="date" content="2021-12-11" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,8 +96,9 @@
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#for-short-count-volume-dataset"><i class="fa fa-check"></i><b>3.1</b> For Short Count Volume dataset</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#drop-unnecessary-columns"><i class="fa fa-check"></i><b>3.1.1</b> Drop unnecessary columns</a></li>
-<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#use-region-name-to-replace-region-code"><i class="fa fa-check"></i><b>3.1.2</b> Use region name to replace region code</a></li>
-<li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#use-county-name-to-replace-the-combination-of-region-code-and-county-code"><i class="fa fa-check"></i><b>3.1.3</b> Use county name to replace the combination of region code and county code</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#aggregate-the-time-columns"><i class="fa fa-check"></i><b>3.1.2</b> Aggregate the Time Columns</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#use-region-name-to-replace-region-code"><i class="fa fa-check"></i><b>3.1.3</b> Use region name to replace region code</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-transformation.html"><a href="data-transformation.html#use-county-name-to-replace-the-combination-of-region-code-and-county-code"><i class="fa fa-check"></i><b>3.1.4</b> Use county name to replace the combination of region code and county code</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
@@ -110,7 +111,12 @@
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#the-busiest-streets-in-new-york-state-from-2018-to-2020"><i class="fa fa-check"></i><b>5.5</b> The busiest streets in New York State from 2018 to 2020</a></li>
 <li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#the-average-count-for-different-time-slots-in-a-week"><i class="fa fa-check"></i><b>5.6</b> The average count for different time slots in a week</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#link-to-the-interactive-component"><i class="fa fa-check"></i><b>6.1</b> Link to the interactive component</a></li>
+<li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#instructions"><i class="fa fa-check"></i><b>6.2</b> Instructions</a></li>
+<li class="chapter" data-level="6.3" data-path="interactive-component.html"><a href="interactive-component.html#description"><i class="fa fa-check"></i><b>6.3</b> Description</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -133,8 +139,29 @@
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
-<p><a href="http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html">Click here!</a></p>
+<div id="link-to-the-interactive-component" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Link to the interactive component</h2>
+<p><a href="http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html">Click here!</a> or use the URL: <a href="http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html" class="uri">http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html</a></p>
+</div>
+<div id="instructions" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Instructions</h2>
+<p>1.Move/Expand/Shrink the brush on the overview line chart (the smaller one) to adjust the time period you want to focus on;
+Shrink the brush to its minimum size will remove the brush, and then drag the mouse on the overview line chart again will bring the brush back;
+Both the line chart and the color of the map will then change according to the time period you selected.</p>
+<p>2.Move the mouse over the line chart to see the tooltip showing the detail number.</p>
+<p>3.Move the mouse over the map to see the tooltip showing the county name and the detail number.</p>
+</div>
+<div id="description" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Description</h2>
+<p>The interactive plots are built with D3 version 7, anyone can check the code by using: developer tools-&gt;resources, or via the github page.</p>
+<p>The line chart shows the average count for per street per hour for the entire New York State, using can change the time period by shrink/expand/move the brush under the line chart.</p>
+<p>The choropleth map shows the average number of counts per street per hour for each county in the New York State. It calculates the average based on the time interval user selected on the line chart.</p>
+<div class="figure">
+<img src="data/screenshot.png" alt="" />
+<p class="caption">Screenshot of the Interactive component</p>
+</div>
 
+</div>
 </div>
             </section>
 

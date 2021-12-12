@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.js"></script>  <!-- link to D3 library -->
+
+
+</head>
+
+<body>
+
+<div id="plots">
+<svg id='lineChart' width="500" height="400">
+</svg>
+
+
+<svg id="map"></svg>
+
+    <div id="map_tooltip"></div>
+
+</div>
+
+<div id="instruction">
+    <p>Instructions:</p>
+    <p>1.Move/Expand/Shrink the brush on the overview line chart (the smaller one) to adjust the time period you want to focus on;
+    <br>Shrink the brush to its minimum size will remove the brush, and then drag the mouse on the overview line chart again will bring the brush back;
+    <br>Both the line chart and the color of the map will then change according to the time period you selected.
+    </p>
+    <p>
+    2.Move the mouse over the line chart to see the tooltip showing the detail number.
+    </p>
+    <p>
+    3.Move the mouse over the map to see the tooltip showing the county name and the detail number.
+    </p>
+</div>
+
+
+<script src="lineChart.js"></script>
+<script src="map.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+</html>

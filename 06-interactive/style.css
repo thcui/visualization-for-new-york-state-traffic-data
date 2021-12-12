@@ -1,0 +1,105 @@
+body{
+    background-color: lightgrey;
+
+}
+
+#plots{
+    position:relative;
+}
+
+#instruction{
+    position: relative;
+    left:100px;
+    width: 80%;
+    background-color:rgba(255,255, 255, 0.5);
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    border-style: dashed;
+
+}
+
+#instruction p{
+    position: relative;
+    left:10px;
+
+}
+
+
+
+
+
+
+#lineChart {
+    color: black;
+    fill: black;
+
+}
+#lineChart line{
+    color: grey;
+}
+
+
+
+#title{
+    color: black;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.axis-name{
+    color: black;
+    fill: black;
+    font-weight: 700;
+    font-size: 12px;
+}
+#tooltip {
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px;
+    min-width: 160px;
+    color: #333;
+}
+
+#map_tooltip{
+    position:absolute;
+    background-color: white;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+#lineChart_tooltip {
+    position: absolute;
+    display: none;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    padding: 8px;
+    min-width: 50px;
+    color: #333;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.tick{
+    color: black;
+    fill: black;
+}
+.tick line{
+    color: #4A5568;
+    fill:  #4A5568;
+    pointer-events: none;
+
+}
+
+.custom{
+    cursor: pointer;
+
+}
+
+

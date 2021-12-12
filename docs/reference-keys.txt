@@ -8,6 +8,7 @@ other-resources
 data-transformation
 for-short-count-volume-dataset
 drop-unnecessary-columns
+aggregate-the-time-columns
 use-region-name-to-replace-region-code
 use-county-name-to-replace-the-combination-of-region-code-and-county-code
 missing-values
@@ -19,4 +20,7 @@ the-distribution-of-vehicle-count-among-different-weekdays-in-new-york-state-fro
 the-busiest-streets-in-new-york-state-from-2018-to-2020
 the-average-count-for-different-time-slots-in-a-week
 interactive-component
+link-to-the-interactive-component
+instructions
+description
 conclusion

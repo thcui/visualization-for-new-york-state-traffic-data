@@ -24,7 +24,7 @@
 <meta name="author" content="Tianhang Cui, Siyue Han" />
 
 
-<meta name="date" content="2021-12-11" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,8 +96,9 @@
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#for-short-count-volume-dataset"><i class="fa fa-check"></i><b>3.1</b> For Short Count Volume dataset</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#drop-unnecessary-columns"><i class="fa fa-check"></i><b>3.1.1</b> Drop unnecessary columns</a></li>
-<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#use-region-name-to-replace-region-code"><i class="fa fa-check"></i><b>3.1.2</b> Use region name to replace region code</a></li>
-<li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#use-county-name-to-replace-the-combination-of-region-code-and-county-code"><i class="fa fa-check"></i><b>3.1.3</b> Use county name to replace the combination of region code and county code</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#aggregate-the-time-columns"><i class="fa fa-check"></i><b>3.1.2</b> Aggregate the Time Columns</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#use-region-name-to-replace-region-code"><i class="fa fa-check"></i><b>3.1.3</b> Use region name to replace region code</a></li>
+<li class="chapter" data-level="3.1.4" data-path="data-transformation.html"><a href="data-transformation.html#use-county-name-to-replace-the-combination-of-region-code-and-county-code"><i class="fa fa-check"></i><b>3.1.4</b> Use county name to replace the combination of region code and county code</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
@@ -110,7 +111,12 @@
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#the-busiest-streets-in-new-york-state-from-2018-to-2020"><i class="fa fa-check"></i><b>5.5</b> The busiest streets in New York State from 2018 to 2020</a></li>
 <li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#the-average-count-for-different-time-slots-in-a-week"><i class="fa fa-check"></i><b>5.6</b> The average count for different time slots in a week</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#link-to-the-interactive-component"><i class="fa fa-check"></i><b>6.1</b> Link to the interactive component</a></li>
+<li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#instructions"><i class="fa fa-check"></i><b>6.2</b> Instructions</a></li>
+<li class="chapter" data-level="6.3" data-path="interactive-component.html"><a href="interactive-component.html#description"><i class="fa fa-check"></i><b>6.3</b> Description</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -143,12 +149,16 @@
 <pre><code>DATA_TYPE, RC_STATION, LATITUDE, LONGITUDE, FLAG_FIELD, RCSTA, FACTOR_GROUP, VEHICLE_AXLE_CODE, BATCH_ID, CHANNEL_NOTES
 </code></pre>
 </div>
-<div id="use-region-name-to-replace-region-code" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Use region name to replace region code</h3>
+<div id="aggregate-the-time-columns" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Aggregate the Time Columns</h3>
+<p>The original dataset includes the volumn count for every 15 mins, which is too detailed and such many columns would make our plots to be complex. Thus, we combined them to have one count per hour, for each set of observation.</p>
+</div>
+<div id="use-region-name-to-replace-region-code" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Use region name to replace region code</h3>
 <p>We need to show the name for each region to let the user to know which region it is instead of using a code, this is needed when we made many plots, so we transformed the dataset.</p>
 </div>
-<div id="use-county-name-to-replace-the-combination-of-region-code-and-county-code" class="section level3" number="3.1.3">
-<h3><span class="header-section-number">3.1.3</span> Use county name to replace the combination of region code and county code</h3>
+<div id="use-county-name-to-replace-the-combination-of-region-code-and-county-code" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Use county name to replace the combination of region code and county code</h3>
 <p>We need to use the county name as the key to pair with the data in the shapefile, but there is no county name provided. So we have to combine the region code and county code to get the county and translate it to the county name following the official document “NYSDOT Region and County Codes”.</p>
 
 </div>

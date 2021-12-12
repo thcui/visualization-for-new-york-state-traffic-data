@@ -1,5 +1,26 @@
 # Interactive component
 
 
+## Link to the interactive component
 
-[Click here!](http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html)
+[Click here!](http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html) or use the URL: http://tianhangcui.com/Visualization_for_New_York_State_Traffic_Data/index.html
+
+## Instructions
+
+1.Move/Expand/Shrink the brush on the overview line chart (the smaller one) to adjust the time period you want to focus on;
+Shrink the brush to its minimum size will remove the brush, and then drag the mouse on the overview line chart again will bring the brush back;
+Both the line chart and the color of the map will then change according to the time period you selected.
+
+2.Move the mouse over the line chart to see the tooltip showing the detail number.
+
+3.Move the mouse over the map to see the tooltip showing the county name and the detail number.
+
+## Description
+
+The interactive plots are built with D3 version 7, anyone can check the code by using: developer tools->resources, or via the github page. 
+
+The line chart shows the average count for per street per hour for the entire New York State, using can change the time period by shrink/expand/move the brush under the line chart.
+
+The choropleth map shows the average number of counts per street per hour for each county in the New York State. It calculates the average based on the time interval user selected on the line chart.
+
+![Screenshot of the Interactive component](data/screenshot.png)

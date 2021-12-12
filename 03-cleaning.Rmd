@@ -12,6 +12,10 @@ We dropped the following columns as they are not necessary for our tasks
 DATA_TYPE, RC_STATION, LATITUDE, LONGITUDE, FLAG_FIELD, RCSTA, FACTOR_GROUP, VEHICLE_AXLE_CODE, BATCH_ID, CHANNEL_NOTES
 
 ```
+
+### Aggregate the Time Columns
+The original dataset includes the volumn count for every 15 mins, which is too detailed and such many columns would make our plots to be complex. Thus, we combined them to have one count per hour, for each set of observation.
+
 ### Use region name to replace region code
 We need to show the name for each region to let the user to know which region it is instead of using a code, this is needed when we made many plots, so we transformed the dataset.
 
