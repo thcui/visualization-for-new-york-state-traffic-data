@@ -30,3 +30,4 @@ conclusion
 the-trend-of-the-average-count-vs-the-covid-19-cases
 difference-in-vehicle-counts-between-different-lanes
 difference-in-vehicle-counts-on-weekdays-and-weekends-among-different-regions
+the-distribution-of-vehicle-count-among-different-day-of-week-in-new-york-state-from-2018-to-2020
