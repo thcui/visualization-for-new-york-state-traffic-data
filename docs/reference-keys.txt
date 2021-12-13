@@ -29,3 +29,4 @@ how-interactivity-helps-us
 conclusion
 the-trend-of-the-average-count-vs-the-covid-19-cases
 difference-in-vehicle-counts-between-different-lanes
+difference-in-vehicle-counts-on-weekdays-and-weekends-among-different-regions
