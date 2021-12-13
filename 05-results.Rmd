@@ -79,6 +79,9 @@ ggplotly(p,tooltip = "text")
 ```
 
 ## The trend of the average count vs the COVID-19 cases
+
+To check if COVID-19 indeed had an impact on the traffic volume, we plot the total amount of COVID-19 comfirmed cases each month from March 2020 to December 2020. We then plot the average vehicle count during that period.
+
 ```{r}
 covid <- read_csv('data/covid.csv') %>%
   separate(`Test Date`, c("MONTH", "DAY", "YEAR"), sep = "/") %>%
@@ -247,7 +250,9 @@ We can see there is a trend that NYC become dominate the first 15 busiest street
 
 This suggests that there may be something different between NYC and other counties, and we should take a closer look at NYC.
 
-## The distribution of vehicle count among different weekdays in New York State from 2018 to 2020
+## The distribution of vehicle count among different day of week in New York State from 2018 to 2020
+
+We then conduct research on the difference of traffic volume among different day of week. First, we look at the distribution of vehicle count among different day of week using a boxplot.
 
 ```{r echo=FALSE,fig.width=10}
 prepare_data_boxplot2 <- function(year){
@@ -276,9 +281,12 @@ ggplot(boxplot_data2, aes(x = fct_relevel(DAY_OF_WEEK, 'Thursday', 'Friday',
   ggtitle('The distribution of vehicle count among different weekdays in New York State from 2018 to 2020')
 ```
 
-From the plot above, streets in New York States are busiest on Monday, Tuesday, and Wednesday, and least busy on Friday from 2018 to 2020.
+From the boxplot above, streets in New York States are busiest on Monday, Tuesday, and Wednesday, and least busy on Friday from 2018 to 2020.
 
 ## Difference in vehicle counts on weekdays and weekends among different regions
+
+Also, we would like to know if there is some difference in the proportion of vehicle counts on weekdays and weekends among different regions.
+
 ```{r}
 diffweek_data <- rbind(select(data[['2018']], REGION, DAY_OF_WEEK, TOTAL), 
                        select(data[['2019']], REGION, DAY_OF_WEEK, TOTAL), 
