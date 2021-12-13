@@ -372,6 +372,24 @@ heat_maps<-grid.arrange(
 The treemap for the region of New York City behaves different pattern from the treemap before. We can see the number of busy hours is high in both 2018 and 2020 but low in 2019, and it is extremely busy for Monday and Tuesday from 15 pm to 18 pm. We did not see the pattern that the pandemic made people use the street less than before, and the street tends to be busier in 2020 than in 2019.
 However, there are also some patterns that New York city shares with the entire New York State, the streets in New York City also tend to be busier on Monday and Tuesday than on other days, and the busy hours are longer in the afternoon than in the morning.
 
+## Difference in vehicle counts on weekdays and weekends among different regions
+```{r}
+diffweek_data <- rbind(select(data[['2018']], REGION, DAY_OF_WEEK, TOTAL), 
+                       select(data[['2019']], REGION, DAY_OF_WEEK, TOTAL), 
+                       select(data[['2020']], REGION, DAY_OF_WEEK, TOTAL)) %>%
+  mutate(DAY_TYPE = if_else(DAY_OF_WEEK %in% c("Saturday", "Sunday"),
+                            true = "Weekend", false = "Weekday")) %>%
+  group_by(REGION, DAY_TYPE) %>%
+  summarize(Freq = mean(TOTAL)) %>%
+  pivot_wider(names_from = DAY_TYPE, values_from = Freq)
+
+HH::likert(REGION~., diffweek_data, positive.order = TRUE, as.percent=TRUE,
+       main = "Difference in vehicle counts on weekdays and weekends among different regions",
+       xlab = "percent", ylab = "")
+```
+
+From the above diverging stacked bar chart, we can see the difference in vehicle count on weekdays and weekends for different regions in New York State. Some regions like Buffalo, Hauppauge, Watertown, and New York City have much more cars on weekdays than weekends, probably because these regions are basically work and live spaces, which involve lots of commute vehicle count. Other regions like Binghamton and Utica have more cars on weekends than weekdays.
+
 ## Difference in vehicle counts between different lanes
 ```{r}
 lane_data <- rbind(select(data[['2018']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 
