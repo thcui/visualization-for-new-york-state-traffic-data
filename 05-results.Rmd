@@ -445,6 +445,9 @@ However, there are also some patterns that New York city shares with the entire 
 
 
 ## Difference in vehicle counts between different lanes
+
+We then focus on the difference in vehicle counts among different lanes of streets using a mosaic plot.
+
 ```{r}
 lane_data <- rbind(select(data[['2018']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 
                    select(data[['2019']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 
