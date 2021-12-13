@@ -384,8 +384,9 @@ diffweek_data <- rbind(select(data[['2018']], REGION, DAY_OF_WEEK, TOTAL),
   pivot_wider(names_from = DAY_TYPE, values_from = Freq)
 
 HH::likert(REGION~., diffweek_data, positive.order = TRUE, as.percent=TRUE,
-       main = "Difference in vehicle counts on weekdays and weekends among different regions",
-       xlab = "percent", ylab = "")
+       main = "Difference on weekdays and weekends among different regions",
+       xlab = "percent", ylab = "", 
+       rightAxis = FALSE)
 ```
 
 From the above diverging stacked bar chart, we can see the difference in vehicle count on weekdays and weekends for different regions in New York State. Some regions like Buffalo, Hauppauge, Watertown, and New York City have much more cars on weekdays than weekends, probably because these regions are basically work and live spaces, which involve lots of commute vehicle count. Other regions like Binghamton and Utica have more cars on weekends than weekdays.
