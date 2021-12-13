@@ -12,6 +12,7 @@ library(parcoords)
 library(plotly)
 library(scales) 
 library(forcats)
+library(vcd)
 ```
 
 
@@ -370,6 +371,30 @@ heat_maps<-grid.arrange(
 
 The treemap for the region of New York City behaves different pattern from the treemap before. We can see the number of busy hours is high in both 2018 and 2020 but low in 2019, and it is extremely busy for Monday and Tuesday from 15 pm to 18 pm. We did not see the pattern that the pandemic made people use the street less than before, and the street tends to be busier in 2020 than in 2019.
 However, there are also some patterns that New York city shares with the entire New York State, the streets in New York City also tend to be busier on Monday and Tuesday than on other days, and the busy hours are longer in the afternoon than in the morning.
+
+## Difference in vehicle counts between different lanes
+```{r}
+lane_data <- rbind(select(data[['2018']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 
+                   select(data[['2019']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 
+                   select(data[['2020']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL))
+lane_num <- lane_data %>% group_by(SPECIFIC_RECORDER_PLACEMENT) %>%
+  summarize(LANE_NUM = max(LANE_CODE))
+lane_data <- lane_data %>% 
+  left_join(lane_num, by = "SPECIFIC_RECORDER_PLACEMENT") %>%
+  group_by(LANE_NUM, LANE_CODE) %>%
+  summarize(Freq = mean(TOTAL)) %>%
+  filter(LANE_NUM > 1, LANE_NUM < 7, LANE_CODE > 0)
+
+fills6 <- brewer.pal(6, 'RdBu')
+mosaic(LANE_CODE ~ LANE_NUM, lane_data, 
+       direction = c("v", "h"), 
+       highlighting_fill = rev(fills6),
+       labeling = labeling_border(tl_labels = c(TRUE, FALSE), 
+                                  rot_labels = c(0,0,0,0,0,0)),
+       main = "Difference in vehicle counts between different lanes")
+```
+
+From the above mosiac plot, we can see that there are more cars in the middle lanes of a street, and fewer cars in the side lanes of a street. Also, there are more cars in streets with many lanes (i.e. those big streets), and fewer cars in streets with few lanes (i.e. those small streets), which is intuitive because big streets are more likely to be busy streets.
 
 ## The trend of the average count vs the COVID-19 cases
 ```{r}
