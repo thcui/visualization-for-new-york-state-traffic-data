@@ -7,3 +7,13 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+Traffic volume statistics, refers to the statistics of the number of vehicles or pedestrians passing through the above places along a specific road or intersection. Traffic volume statistics are usually automatically counted by the equipment installed near the road, or the number of passing vehicles or pedestrians is counted and recorded by the observer holding an electronic device or visually on the record sheet. Local governments can use traffic volume statistics to determine which roads are prone to congestion, improve the congestion of the road or provide alternatives. Traffic volume can be used by local councils to identify which routes are used most, and to either improve that road or provide an alternative if there is an excessive amount of traffic. Also, traffic volume are useful for comparing two or more roads, and can also be used alongside other methods to find out where the central business district (CBD) of a settlement is located. To put in a nutshell, studying traffic volume could have the following advantages:
+
+- Establish the relative importance of any road.
+- Structural design of roads.
+- Planning and design of new streets.
+- Design of intersections and other control devices
+- Planning, design, and regulation of traffic.
+- Establish properties and schedules for traffic improvements.
+
+This project uses traffic volume data primarily from [New York State Department of Transportation](https://www.dot.ny.gov/index). To be specific, it includes traffic volume data from 2018 to 2020 with 332,957 records of data in total. Besides, this project is also interested in how the COVID-19 pandemic affects traffic volume, therefore, it also uses data from [New York State Department of Health](https://www.health.ny.gov/), which provides statistics of COVID-19 cases in the New York State from March 1st, 2020 to the present.
