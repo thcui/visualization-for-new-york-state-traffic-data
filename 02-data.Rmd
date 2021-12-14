@@ -139,7 +139,7 @@ This website provided us the way to interpret the region county codes, the origi
 
 This document provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
 
-4.https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb/repository/Field_Definitions_SC%20Formats.pdf
+4. https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb/repository/Field_Definitions_SC%20Formats.pdf
 
 This document provided us the way to know the meaning of each columns in the 'New York State Statewide COVID-19 Testing dataset'
 
