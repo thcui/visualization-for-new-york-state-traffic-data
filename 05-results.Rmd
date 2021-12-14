@@ -1,5 +1,7 @@
 # Results
 
+(All the 'average count' without other specification refers to the average count per hour per street)
+
 
 ```{r echo=FALSE}
 library(tidyverse)
