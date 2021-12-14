@@ -121,7 +121,9 @@ p <-
 p
 ```
 
-From the line chart above, we can conclude that when the pandemic totally outbreak in April 2020, there was a sudden drop on the average car counts on the street. This was probably because of the Covid Shutdown policy in New York. Also, there was a decrease of the average car counts after October, and a sudden increase of the number of new cases. Therefore, we make a conclusion that people will be more likely to stay home and do not drive their cars when there is an outbreak of the pandemic.
+From the line chart above, we can conclude that when the pandemic totally outbreaks in New York State in April 2020, there was a sudden drop in the average car counts on the street. This was probably because of the Covid Shutdown policy in New York. 
+However, there was only a slight decrease in the average vehicle counts after October, with a much more serious increase in the number of new cases. 
+Therefore, we make a conclusion that people will be more likely to stay home and do not drive their cars when there is an outbreak of the pandemic, but this may be mainly affected by the shutdown policy instead of people's own willingness.
 
 ## The comparison between rural and urban areas for their trend of the average count
 - First, we used a parallel coordinate plot, with local min/max scale, to show the relationships between the variables and see which regions have relatively high/low count in each kind of areas.
@@ -298,7 +300,7 @@ diffweek_data <- rbind(select(data[['2018']], REGION, DAY_OF_WEEK, TOTAL),
   pivot_wider(names_from = DAY_TYPE, values_from = Freq)
 
 HH::likert(REGION~., diffweek_data, positive.order = TRUE, as.percent=TRUE,
-       main = "Difference on weekdays and weekends among different regions",
+       main = "Difference of average count on weekdays and weekends among different regions",
        xlab = "percent", ylab = "", 
        rightAxis = FALSE)
 ```
@@ -444,9 +446,9 @@ The treemap for the region of New York City behaves different pattern from the t
 However, there are also some patterns that New York city shares with the entire New York State, the streets in New York City also tend to be busier on Monday and Tuesday than on other days, and the busy hours are longer in the afternoon than in the morning.
 
 
-## Difference in vehicle counts between different lanes
+## Difference in average vehicle counts between different lanes
 
-We then focus on the difference in vehicle counts among different lanes of streets using a mosaic plot.
+We then focus on the difference in vehicle counts(averaged to each steet and each hour) among different lanes of streets using a mosaic plot.
 
 ```{r}
 lane_data <- rbind(select(data[['2018']], SPECIFIC_RECORDER_PLACEMENT, LANE_CODE, TOTAL), 

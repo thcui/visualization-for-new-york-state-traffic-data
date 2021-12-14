@@ -84,13 +84,42 @@ There are 99454 records for year 2018, 122967 records for year 2019, and 110536 
 Link to the dataset: https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb
 
 As it provided the average speed data for each day, we can combine it with the short count volume dataset to see the relationship between the traffic count and the average speed for each day on average. This helps us solve the second question above.
+We only used the column 'SPEED'(Which represents the average speed for a testing period), and pair each records to the vehicle count dataset by "COUNT_ID", "YEAR", "MONTH", "DAY" and "FEDERAL_DIRECTION".
 
-##	New York State Statewide COVID-19 Testing dataset
+As we have discussed in chapter 4, we found too many missing data for speed, so we did not use them in analysis. Thus, we did not includes too much details about this dataset here.
+
+##	New York State Statewide COVID-19 Testing dataset from the New York State Department of Health
 
 Link to the dataset: https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data
 
 This dataset provides the number of new positive and cumulative cases of Covid-19 in the New York State from 2020 March 1st to the present. Thus, we can use it to make a plot showing the trend of the pandemic for the entire state, and then compare the trend with traffic volume in the New York state. This helps us solve the third question above.
 
+```{r, echo=FALSE, results='asis'}
+Column <- c('Test Date', 
+            'County',
+            'New positives',
+            'Cumulative number of positives',
+            'Total number of tests performed',
+            'Cumulative number of tests performed'
+            )
+Description <-c(
+                'The date the test result was processed by the NYS Electronic Clinical Laboratory Reporting System (ECLRS).',
+                'The county of residence for the person tested.',
+                'The number of new persons tested positive for COVID-19 infection on the test date in each county.',
+                'Running total for the number of persons tested positive for COVID19 infection in each county as of the test date.',
+                'The number of tests of individuals performed on the test date in each county. This total includes positives, negatives, and inconclusive results.',
+                'Running total for the number of tests of individuals performed in each county as of the last update to the dataset. This total includes positives, negatives, and inconclusive results.'
+  )
+data_info<- data.frame(Column, Description)
+knitr::kable(data_info, caption = "Major columns used",
+             row.names = F,font_size = 10)
+```
+
+**Potential issues found in this dataset:**
+No potential issues found in this simple dataset
+ 
+**Number of Records:**
+There are 40,424 records of data in total
 
 ## Other resources
 1. https://www.dot.ny.gov/regional-offices
@@ -105,7 +134,16 @@ This website provided us the way to interpret the region county codes, the origi
 
 This document provided us the way to interpret the functional class data, the original region data is the number corresponding to each classification.(ex. 01 represents interstate principal arterial in the rural area)
 
-4. https://cugir.library.cornell.edu/catalog/cugir-007865
+4.https://www.dot.ny.gov/divisions/engineering/technical-services/highway-data-services/hdsb/repository/Field_Definitions_SC%20Formats.pdf
+
+This document provided us the way to know the meaning of each columns in the 'New York State Statewide COVID-19 Testing dataset'
+
+5. https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data
+
+This document provided us the way to know the meaning of each columns in the 'Short Count Volume dataset '
+
+
+6. https://cugir.library.cornell.edu/catalog/cugir-007865
 
 The above website provided us the shapefile for New York Sate and it is used in the interactive component
 
