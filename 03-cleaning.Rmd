@@ -24,3 +24,11 @@ We need to use the county name as the key to pair with the data in the shapefile
 
 ### Fixing the obvious errors in the dataset
 As we mentioned in the second chapter, there are a few records with data in the wrong columns, we made fixed them by hand as the number of these errors is small (12 in total).
+
+## For Average Weekday Speed dataset
+
+We extracted the column 'SPEED', and pair each records to the vehicle count dataset by "COUNT_ID", "YEAR", "MONTH", "DAY" and "FEDERAL_DIRECTION".
+However, as we further noticed there are too much data missing for 'SPEED', we decided not analyzing the 'SPEED' data anymore.(See chapter 4 - 'Missing Values' for more details)
+
+## For New York State Statewide COVID-19 Testing dataset
+We did not transform the data as the data is already in the format we need and it is simply by itself.
