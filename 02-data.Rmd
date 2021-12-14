@@ -115,11 +115,16 @@ knitr::kable(data_info, caption = "Major columns used",
              row.names = F,font_size = 10)
 ```
 
+
+**Number of Records:**
+
+There are 40,424 records of data in total
+
 **Potential issues found in this dataset:**
+
 No potential issues found in this simple dataset
  
-**Number of Records:**
-There are 40,424 records of data in total
+
 
 ## Other resources
 1. https://www.dot.ny.gov/regional-offices

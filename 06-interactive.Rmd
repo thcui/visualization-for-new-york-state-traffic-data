@@ -37,4 +37,4 @@ The animation of the line chart when the chart is initialized helps the user to 
 
 The animation of color change on the map (after each time the user changed the brush) allows the user to easily detect which part of the graph has changed.
 
-![Screenshot of the Interactive component](data/screenshot.png)
+![Screenshot of the Interactive Component](data/screenshot.png)
