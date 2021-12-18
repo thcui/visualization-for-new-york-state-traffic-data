@@ -137,12 +137,10 @@ p<-grid.arrange(
   nrow = 2,
   top = textGrob(
     'The trend of the average count vs the COVID-19 cases of year 2020',
-    gp = gpar(fontsize = 30)
+    gp = gpar(fontsize = 15)
   )
 )
 
-
-p
 ```
 
 From the line chart above, we can conclude that when the pandemic totally outbreaks in New York State in April 2020, there was a sudden drop in the average car counts on the street. This was probably because of the Covid Shutdown policy in New York. 
