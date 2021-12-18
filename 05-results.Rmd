@@ -75,7 +75,7 @@ p <-
 
   )) + geom_line(data = data_2018_line_chart) + geom_line(data = data_2019_line_chart) +
   geom_line(data = data_2020_line_chart) + scale_x_continuous(breaks = 1:12, labels =
-                                                                1:12) + xlab("Month") + ylab("Average count per hour for each street") +
+                                                                1:12) + xlab("Month") + ylab("Average count per hour for each street(counts)") +
   scale_colour_manual(values = c("red", "blue", "darkgreen"))+theme_bw()+ggtitle('The Average Count Per Hour Per Street from 2018 to 2020')+scale_y_continuous(limits = c(0, 250), expand = c(0, 0))
 ggplotly(p,tooltip = "text")
 ```
@@ -100,25 +100,47 @@ data_2020_line_chart <- data[['2020']] %>%
   group_by(Year, MONTH) %>% 
   summarize(Total_count = sum(count_per_hour, na.rm = TRUE),
             Number_of_test_hours = sum(!is.na(count_per_hour))) %>% 
-  mutate(Average_count_per_hour = Total_count / Number_of_test_hours)
-
-data_line_chart <- covid %>% 
-  group_by(MONTH) %>% 
-  mutate(MONTH = as.numeric(MONTH)) %>%
-  summarize(`New_cases (thousand)` = sum(`New Positives`, na.rm = TRUE) / 1000) %>%
-  left_join(select(data_2020_line_chart, MONTH, Average_count_per_hour), by = "MONTH") %>%
-  pivot_longer(cols = c("New_cases (thousand)", "Average_count_per_hour"),
+  mutate(Average_count_per_hour = Total_count / Number_of_test_hours)%>%
+  pivot_longer(cols = c("Average_count_per_hour"),
                names_to = "variable", 
                values_to = "value")
 
-p <-
-  ggplot(data = data_line_chart) + 
-  geom_line(mapping = aes(x = MONTH, y = value, color = variable)) +
-  ylab("Average count per hour for each street\n New cases (thousand)") +
+data_covid<- covid %>% 
+  group_by(MONTH) %>% 
+  mutate(MONTH = as.numeric(MONTH)) %>%
+  summarize(`New_cases (thousand)` = sum(`New Positives`, na.rm = TRUE) / 1000)%>%
+  pivot_longer(cols = c("New_cases (thousand)"),
+               names_to = "variable", 
+               values_to = "value")
+
+p1 <-ggplot(data = data_2020_line_chart) + 
+  geom_line(mapping = aes(x = MONTH, y = value)) +
+  ylab("Average count (counts)") +
   theme_bw() + 
   scale_x_continuous(breaks = 1:12, labels = 1:12) +
-  xlab("Month") +
-  ggtitle('The trend of the average count vs the COVID-19 cases')
+  xlab("Month of 2020") +
+  ggtitle('The trend of the average count (per hour for each street) of 2020')
+
+p2 <-ggplot(data = data_covid) + 
+  geom_line(mapping = aes(x = MONTH, y = value)) +
+  ylab("New cases (thousand)") +
+  theme_bw() + 
+  scale_x_continuous(breaks = 1:12, labels = 1:12) +
+  xlab("Month of 2020") +
+  ggtitle('The trend of new COVID-19 cases per day')
+
+
+p<-grid.arrange(
+  p1,
+  p2,
+  ncol = 1,
+  nrow = 2,
+  top = textGrob(
+    'The trend of the average count vs the COVID-19 cases of year 2020',
+    gp = gpar(fontsize = 30)
+  )
+)
+
 
 p
 ```
@@ -464,10 +486,11 @@ lane_data <- lane_data %>%
   summarize(Freq = mean(TOTAL)) %>%
   filter(LANE_NUM > 1, LANE_NUM < 7, LANE_CODE > 0)
 
-fills6 <- brewer.pal(6, 'RdBu')
-mosaic(LANE_CODE ~ LANE_NUM, lane_data, 
+lane_data<-lane_data%>%rename(The_Number_of_Lanes_for_A_Street='LANE_NUM')%>%rename(The_Lane_number='LANE_CODE')
+fill <- brewer.pal(6, "Set3")
+mosaic(The_Lane_number ~ The_Number_of_Lanes_for_A_Street, lane_data, 
        direction = c("v", "h"), 
-       highlighting_fill = rev(fills6),
+       highlighting_fill = fill,
        labeling = labeling_border(tl_labels = c(TRUE, FALSE), 
                                   rot_labels = c(0,0,0,0,0,0)),
        main = "Difference in vehicle counts between different lanes")
