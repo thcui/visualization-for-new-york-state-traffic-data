@@ -9,7 +9,7 @@ The traffic data is from the New York State Department of Transportation: https:
 Part of the visualization is combined with the COVID-19 data for New York State: https://health.data.ny.gov/Health/New-York-State-Statewide-COVID-19-Testing/xdss-u53e/data
 
 
-Link to the book: https://thcui.github.io/Visualization-for-New-York-State-Traffic-Data/
+Link to the book: https://thcui.github.io/visualization-for-new-york-state-traffic-data/
 
 This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate
 
